@@ -27,10 +27,6 @@ function run_km_sim(vehicle_file, mission_file, post_pro_file)
 % see also execute_mission, plot_timehist, plot_trajectory
 
 missionName = mission_file; % Mischa ruggurgi
-<<<<<<< Updated upstream
-=======
-addpath(genpath("./km_sim_2024"))
->>>>>>> Stashed changes
 %crit_info(missionName);
 
 progBar = waitbar(5,'Running','Name','Status'); %ADDED BY MISCHA
@@ -67,20 +63,12 @@ waitbar(0.9,progBar,'Processing Results'); %ADDED BY MISCHA
 run(post_pro_file);
 
 waitbar(1,progBar,'Complete'); %ADDED BY MISCHA
-<<<<<<< Updated upstream
 pause(1)
 close(progBar)
 
 end
 
 
-=======
-delete(progBar);
-end
-
-
-
->>>>>>> Stashed changes
 % TODO:   
 %       idiot proofing; add truncate/extrapolate option to interpolations
 %       instead of just bombing everytime

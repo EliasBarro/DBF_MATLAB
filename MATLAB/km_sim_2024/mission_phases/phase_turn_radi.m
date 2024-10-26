@@ -112,11 +112,7 @@ if (lift>max_lift)
     set_fault('vehicle cannot produce the lift needed');
     triggr_dot1 = -1e9;
 elseif e<0
-<<<<<<< Updated upstream
     set_fault('Vehicle Stored Energy Depleted'); %changed fault to set fault
-=======
-    set_fault('Vehicle Stored Energy Depleted'); % changed fault to set_fault (changed by WUDBF on 1/20/24)
->>>>>>> Stashed changes
     triggr_dot1 = -1e9;
 elseif g_load > plane.g_limit
     set_fault('g limit exceeded, vehicle failed structurally');

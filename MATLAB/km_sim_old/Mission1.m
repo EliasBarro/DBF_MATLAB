@@ -2,7 +2,7 @@ function Mission1
 % Daniel also Elias and Mischa and Tasha
 plane = current_plane();
 t_final         = 5*60;
-init_alt = 497.2;
+init_alt = 669;
 turnBackRadius = 250/3.281;
 turnAroundRadius = 100/3.281;
 

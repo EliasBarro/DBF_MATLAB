@@ -1,11 +1,7 @@
 function Mission2
 
 plane = current_plane();
-<<<<<<< Updated upstream
 t_final         = 10*60;
-=======
-t_final         = 5*60;
->>>>>>> Stashed changes
 init_alt = 497.2;
 turnBackRadius = 250/3.281;
 turnAroundRadius = 100/3.281;
@@ -51,7 +47,6 @@ mission_plan(2,:) = {mp.ground_rot,  10*pi/180, {'0',1}, {'0',1}, 'g_load>1', 'f
 % climb at max thr, 20 degree flight path angle, until climbed 10m AGL (delta-h)
 mission_plan(3,:) = {mp.climb_max,  20, {'h_dot',10}, {'0',1}, 'false', 'false'};
 
-<<<<<<< Updated upstream
 % go straight until traveled 500ft from start
 mission_plan(4,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'x>500/3.28', 'false'}; % 500 feet to meters
 
@@ -394,85 +389,6 @@ mission_plan(111,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
 
 % terminate
 mission_plan(112,:) = {mp.terminate,0,0,0,0,0};
-=======
-%put plane in cruise - switch to alt aero
-mission_plan(4,:)={mp.config,'set_alt_aero;','','','',''};
-
-% go straight until traveled 500ft from start
-mission_plan(5,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'x>500/3.28', 'false'}; % 500 feet to meters
-
-% 180 degree right turn
-mission_plan(6,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};
-
-% go straight until even with start
-mission_plan(7,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
-
-% 360 degree left turn
-mission_plan(8,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
-
-% go straight until even with start
-mission_plan(9,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
-
-% 180 degree right turn
-mission_plan(10,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};  % End of first lap
-
-% go straight until traveled 500ft from start
-mission_plan(11,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>500/3.28', 'false'}; % 500 feet to meters
-
-% 180 degree right turn
-mission_plan(12,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};
-
-% go straight until even with start
-mission_plan(13,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
-
-% 360 degree left turn
-mission_plan(14,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
-
-% go straight until even with start
-mission_plan(15,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
-
-% 180 degree right turn
-mission_plan(16,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};  % End of first lap
-
-% go straight until traveled 500ft from start
-mission_plan(17,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>500/3.28', 'false'}; % 500 feet to meters
-
-% 180 degree right turn
-mission_plan(18,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};
-
-% go straight until even with start
-mission_plan(19,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
-
-% 360 degree left turn
-mission_plan(20,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
-
-% go straight until even with start
-mission_plan(21,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
-
-% 180 degree right turn
-mission_plan(22,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};  % End of first lap
-
-% go straight until even with start
-mission_plan(23,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
-%% LANDING
-% glide at -20 degrees until clearance altitude is less than 1.5m
-mission_plan(24,:) = {mp.glide, -15, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};
-
-% glide at -4 degrees until clearance altitude is less than 0.1m
-mission_plan(25,:) = {mp.glide, -3, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0.2)], 'false'};
-
-% perfect flare right into runway, try to lock into 0 gamma. If getting at max aoa, also quit
-mission_plan(26,:) = {mp.glide,  0, {'0',1}, {'0',1}, 'gamma>=-1e-4', 'aoa>0.95*max(plane.alt_aero(:,1));'};
-
-% rotate down to level at 2 deg/sec
-mission_plan(27,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
-
-% roll out
-mission_plan(28,:) = {mp.ground_thr,  0, {'0',1}, {'h_dot>=200',1}, 'v<5', 'false'};
-
-% terminate
-mission_plan(29,:) = {mp.terminate,0,0,0,0,0};
->>>>>>> Stashed changes
 
 % write to mission_phase function
 mission_phase(0,mission_plan);

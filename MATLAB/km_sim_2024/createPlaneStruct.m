@@ -8,17 +8,12 @@
 % single_var_csv_file -  CSV file with static variables that are put into plane struct
 % thrust_vs_velo -       CSV file containing thrust values in the first column and 
 %                        corresponding velocity values in the second column
-<<<<<<< Updated upstream
 function createPlaneStruct(store_file_name, aero_aoa_vs_cl_vs_cd, single_var_csv_file, thrust_vs_velo)
-=======
-function createPlaneStruct(store_file_name, aoa_vs_cl_cd, single_var_csv_file, thrust_vs_velo)
->>>>>>> Stashed changes
     %initialize struct
     plane = struct; 
     
     %initialize single variables
     single_vars = readmatrix(single_var_csv_file);
-<<<<<<< Updated upstream
     plane.Amps = single_vars(1); %amps
     plane.maxAlt = single_vars(2); %meters
     plane.g_limit = single_vars(3); %m/s^2
@@ -32,21 +27,6 @@ function createPlaneStruct(store_file_name, aoa_vs_cl_cd, single_var_csv_file, t
     %initialize aero and alt_aero
     plane.aero = createAero(aero_aoa_vs_cl_vs_cd, plane.parasitic_drag);
     plane.alt_aero = createAltAero(aero_aoa_vs_cl_vs_cd, plane.parasitic_drag);
-=======
-    plane.Amps = single_vars(1); % Amps
-    plane.maxAlt = single_vars(2); % m
-    plane.g_limit = single_vars(3); % m/s^2
-    plane.empty_W = 9.80665*single_vars(4); % kg
-    plane.spec_fuel_W = single_vars(5); % kg 
-    plane.e_cap = single_vars(6); % wH
-    plane.weight = 9.80665*single_vars(7); % kg
-    plane.S_ref = single_vars(8); % m^2
-    plane.parasitic_drag = single_vars(9); % no units
-    
-    %initialize aero and alt_aero
-    plane.aero = createAero(aoa_vs_cl_cd, plane.parasitic_drag);
-    plane.alt_aero = createAltAero(aoa_vs_cl_cd, plane.parasitic_drag);
->>>>>>> Stashed changes
     
     
     %initialize prop perf
