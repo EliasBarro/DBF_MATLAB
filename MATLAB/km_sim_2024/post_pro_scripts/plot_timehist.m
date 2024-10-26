@@ -36,7 +36,7 @@ ylabel('velocity (m/s)');
 
 % plot h
 ax(3) = subplot(4,2,3);
-plot(t,h,Color=[0.0 0 0.39]);grid;
+plot(t,h,Color=[0.0 0 0.39],LineWidth=1.5);grid;
 axis tight
 ylabel('clearance altitude(m)');
 
@@ -49,15 +49,15 @@ psi     = mod(x_hist(:,6),2*pi)*180/pi;
 
 % plot aoa
 ax(4) = subplot(4,2,4); hold on;
-plot(t,aoa,Color = [0.67 0 0.14]);grid;
-plot(t,gamma,Color=[0 0.5 0]);
+plot(t,aoa,Color = [0.67 0 0.14],LineWidth=1.5);grid;
+plot(t,gamma,Color=[0 0.5 0],LineWidth=1.5);
 axis tight
 ylabel('Longitudinal Angles (deg)');
 legend('Angle of Attack','Flight Path Angle','Location','Best');
 
 % plot heading
 ax(5) = subplot(4,2,5);
-plot(t,psi,Color=[0.4940 0.1840 0.5560]);grid;
+plot(t,psi,Color=[0.4940 0.1840 0.5560],LineWidth=1.5);grid;
 axis tight
 ylabel('Heading (deg)');
 
@@ -68,14 +68,14 @@ thr     = x_hist(:,8);  % 0 - 1 fractional thr state
 
 % charge wrt time
 ax(6) = subplot(4,2,6);
-plot(t,e,Color=[0.9290 0.6940 0.1250]);grid;
+plot(t,e,Color=[0.9290 0.6940 0.1250],LineWidth=1.5);grid;
 axis tight
 ylabel('Internal Energy [e]');
 ylim([0,max(e)*1.1]);
 
 % throttle wrt time
 ax(8) = subplot(4,2,8);
-plot(t,thr,'blue');grid;
+plot(t,thr,'blue',LineWidth=1.5);grid;
 axis tight
 ylim([0,1]);
 ylabel('throttle setting (decimal fraction)');
@@ -84,7 +84,7 @@ xlabel('time (sec)');
 %% mission phase
 ax(7) = subplot(4,2,7);
 m_phz = x_hist(:,15);
-plot(t,m_phz,Color =[0.74 0.25 0.53]);grid;
+plot(t,m_phz,Color =[0.74 0.25 0.53],LineWidth=1.5);grid;
 ylabel('mission phase');
 axis tight
 xlabel('time (sec)');
