@@ -12,23 +12,24 @@ v       = x_hist(:,2);  % meters/sec
 h       = x_hist(:,3);  % meters of altitude 
 h       = h-h(1);       % change absolute altitude to a clearance altitude
 
+% Official WashU Color Pallette
+washuGreen = [0.19 0.34 0.21];
+washuRed = [0.67 0.15 0.20];
+
 % plot north and east components of groundtrack distance
 figure('units','normalized','outerposition',[0 0 1 1]);
 sgtitle(missionName); % mischa hrvhv
 ax(1) = subplot(4,2,1);
 hold on;
 axis tight
-plot(t,north,Color=[0.67 0 0.14],LineWidth=1.5);grid;
-plot(t,east,Color=[0 0.5 0],LineWidth=1.5);
+plot(t,north,Color=washuRed,LineWidth=1.5);grid;
+plot(t,east,Color=washuGreen,LineWidth=1.5);
 legend('North','East');
 ylabel('groundtrack distance (m)');
 
-% WashU Red = [0.67 0 0.14]
-% WashU Green = [0 0.5 0]
-
 % plot v
 ax(2) = subplot(4,2,2);
-plot(t,v,Color = [0.8500, 0.3250, 0.0980],LineWidth=1.5);grid;
+plot(t,v,Color = washuRed,LineWidth=1.5);grid;
 axis tight
 ylabel('velocity (m/s)');
 
@@ -36,7 +37,7 @@ ylabel('velocity (m/s)');
 
 % plot h
 ax(3) = subplot(4,2,3);
-plot(t,h,Color=[0.0 0 0.39],LineWidth=1.5);grid;
+plot(t,h,Color=washuRed,LineWidth=1.5);grid;
 axis tight
 ylabel('clearance altitude(m)');
 
@@ -49,15 +50,15 @@ psi     = mod(x_hist(:,6),2*pi)*180/pi;
 
 % plot aoa
 ax(4) = subplot(4,2,4); hold on;
-plot(t,aoa,Color = [0.67 0 0.14],LineWidth=1.5);grid;
-plot(t,gamma,Color=[0 0.5 0],LineWidth=1.5);
+plot(t,aoa,Color = washuRed,LineWidth=1.5);grid;
+plot(t,gamma,Color=washuGreen,LineWidth=1.5);
 axis tight
 ylabel('Longitudinal Angles (deg)');
 legend('Angle of Attack','Flight Path Angle','Location','Best');
 
 % plot heading
 ax(5) = subplot(4,2,5);
-plot(t,psi,Color=[0.4940 0.1840 0.5560],LineWidth=1.5);grid;
+plot(t,psi,Color=washuGreen,LineWidth=1.5);grid;
 axis tight
 ylabel('Heading (deg)');
 
@@ -68,14 +69,14 @@ thr     = x_hist(:,8);  % 0 - 1 fractional thr state
 
 % charge wrt time
 ax(6) = subplot(4,2,6);
-plot(t,e,Color=[0.9290 0.6940 0.1250],LineWidth=1.5);grid;
+plot(t,e,Color=washuRed,LineWidth=1.5);grid;
 axis tight
 ylabel('Internal Energy [e]');
 ylim([0,max(e)*1.1]);
 
 % throttle wrt time
 ax(8) = subplot(4,2,8);
-plot(t,thr,'blue',LineWidth=1.5);grid;
+plot(t,thr,Color=washuGreen,LineWidth=1.5);grid;
 axis tight
 ylim([0,1]);
 ylabel('throttle setting (decimal fraction)');
@@ -84,7 +85,7 @@ xlabel('time (sec)');
 %% mission phase
 ax(7) = subplot(4,2,7);
 m_phz = x_hist(:,15);
-plot(t,m_phz,Color =[0.74 0.25 0.53],LineWidth=1.5);grid;
+plot(t,m_phz,Color =washuRed,LineWidth=1.5);grid;
 ylabel('mission phase');
 axis tight
 xlabel('time (sec)');
