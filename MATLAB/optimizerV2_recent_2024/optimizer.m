@@ -1,3 +1,5 @@
+% 10/25/2024 NOTES: Make thrust constraint
+
 %clear
 %clc
 %cd 'C:\Users\rakif\Box\DBF 2023-2024\Sim Dev'
@@ -29,6 +31,8 @@ TOFL_max = 30.48; % 100 ft
 WL_max = 10*9.81; % 10 kg/m^2 wingloading (DEFINITELY A LIMITING FACTOR)
 P_max = 2000; %
 AR_min = 4; % Minimum Aspect Ratio is 4
+%b_max = 1.3; % trying 4.27 ft (10/25/2024 - THIS LEADS TO STATIC THRUST OF AROUND 10)
+%b_max = 1.524; %trying 5 ft
 b_max = 1.8288; % Maximum wingspan is 6 ft. We're assuming that we'll do the max wingspan possible
 %S_max = 1; % 1 m^2 max
 
@@ -101,7 +105,7 @@ M3raw = M3raw/(max(M3Score,[],'all'));
 M2Score = M2Score/(max(M2Score,[],'all'));
 M3Score = M3Score/(max(M3Score,[],'all'));
 %Raw = M2raw + M3raw + GMraw; - What is point of this?
-Raw = M3raw + M3raw;
+Raw = M2raw + M3raw;
 %Score = M2Score + M3Score + GMScore;
 Score = M2Score + M3Score;
 [maxScore, idx] = max(Score,[],'all');
@@ -115,7 +119,7 @@ best_v_max = Sweep_v_max(v_max_i);
 best_config = [best_S, best_M2, best_M3, best_v_max];
 req_Power = P(best_config_idx(1), best_config_idx(2), best_config_idx(3), best_config_idx(4));
 req_AR = AR(best_config_idx(1), best_config_idx(2), best_config_idx(3), best_config_idx(4));
-req_ST = req_Power*polyval(eta_coeff,0.01)/(0.01*best_config(3))/9.81;
+req_ST = req_Power*polyval(eta_coeff,0.01)/(0.01*best_config(4))/9.81;
 AUW = W2(best_config_idx(1), best_config_idx(2), best_config_idx(3), best_config_idx(4))/9.81;
 flight_time = C/req_Power/60;
 req_laps = laps(best_config_idx(1), best_config_idx(2), best_config_idx(3), best_config_idx(4));
@@ -142,29 +146,39 @@ toc
 %% Plotting - Section not done(?) are we actually gonna do this(?)
 % c = [0.647 0.078 0.09; 0.424 0.451 0.451];
 % 
+% [S_i, W_p_i, v_max_i, passenger_i, C_i] = ind2sub(size(Score),idx);
+% [S_i, M2_i, M3_i, v_max_i] = ind2sub(size(Score),idx);
 % 
-% query = 0.8:0.005:1.2;
-% v_diff = squeeze(Raw(S_i,M2_i,:,passenger_i, C_i))/Raw(S_i,M2_i,v_max_i,passenger_i, C_i);
-% v_diff = spline(Sweep_v_max(:)/Sweep_v_max(v_max_i), v_diff, query);
+query = 0.8:0.005:1.2;
+% vmax
+v_diff = squeeze(Raw(S_i,M2_i,M3_i, :))/Raw(S_i,M2_i,M3_i, v_max_i);
+v_diff = spline(Sweep_v_max(:)/Sweep_v_max(v_max_i), v_diff, query);
 % 
-% P_diff = squeeze(Raw(S_i,M2_i,:,passenger_i, C_i))/Raw(S_i,M2_i,v_max_i,passenger_i, C_i);
-% P_diff = spline(squeeze(P(S_i,M2_i,:,passenger_i,C_i))/P(S_i,M2_i,v_max_i,passenger_i, C_i), P_diff, query);
+M2_diff = squeeze(Raw(S_i,:,M3_i, v_max_i))/Raw(S_i,M2_i,M3_i, v_max_i);
+M2_diff = spline(squeeze(M2(S_i,:,M3_i, v_max_i))/M2(S_i, M2_i, M3_i, v_max_i), M2_diff, query);
+
+M3_diff = squeeze(Raw(S_i,M2_i,:, v_max_i))/Raw(S_i,M2_i,M3_i, v_max_i);
+M3_diff = spline(squeeze(M3(S_i,M2_i,:, v_max_i))/M3(S_i, M2_i, M3_i, v_max_i), M3_diff, query);
 % 
-% C_diff = squeeze(Raw(S_i,M2_i,v_max_i,passenger_i,:))/Raw(S_i,M2_i,v_max_i,passenger_i, C_i);
-% C_diff = spline(Sweep_C(:)/Sweep_C(C_i), C_diff, query);
+% C_i variable
+S_diff = squeeze(Raw(:, M2_i, M3_i, v_max_i))/Raw(S_i, M2_i, M3_i, v_max_i);
+S_diff = spline(Sweep_S(:)/Sweep_S(S_i), S_diff, query);
 % 
-% figure
-% plot(query, v_diff)
-% hold on
-% plot(Sweep_M2(:)/Sweep_M2(M2_i), squeeze(Raw(S_i,:,v_max_i,passenger_i, C_i))/Raw(S_i,M2_i,v_max_i,passenger_i, C_i))
+figure
+hold on
+plot(query, v_diff)
+plot(query,M2_diff)
+%plot(Sweep_M2(:)/Sweep_M2(M2_i), squeeze(Raw(S_i,:,v_max_i,passenger_i, C_i))/Raw(S_i,M2_i,v_max_i,passenger_i, C_i))
+plot(query,M3_diff)
+plot(query, S_diff)
 % plot(Sweep_passengers(:)/Sweep_passengers(passenger_i), squeeze(Raw(S_i,M2_i,v_max_i,:,C_i))/Raw(S_i,M2_i,v_max_i,passenger_i, C_i))
 % plot(query, C_diff)
-% xlim([0.8 1.2])
-% hold off
+xlim([0.8 1.2])
+hold off
 % 
-% legend('v_{max}', 'Cabinet Weight', 'Passengers', 'Capacity');
-% xlabel('Fractional Change in Scoring Variable');
-% ylabel('Fractional Change in Score')
+legend('Cruise Velocity', 'M2 Fuel Tank Weight', 'M3 Glider Weight','Wing Area', 'Location','best');
+xlabel('Fractional Change in Scoring Variable');
+ylabel('Fractional Change in Score')
 % 
 % set(0, "DefaultAxesColorOrder", c)
 
