@@ -175,11 +175,8 @@ plot(query, S_diff)
 % plot(query, C_diff)
 xlim([0.8 1.2])
 hold off
-%Set Graph Labels 
-lgd=legend('Cruise Velocity', 'M2 Fuel Tank Weight', 'M3 Glider Weight','Wing Area', 'Location','best');
-lgd.FontSize=12;
-lgd.Location='north';
-
+% 
+legend({'Cruise Velocity', 'M2 Fuel Tank Weight', 'M3 Glider Weight','Wing Area', 'Location','best'},');
 xlabel('Fractional Change in Scoring Variable');
 ylabel('Fractional Change in Score')
 % 
