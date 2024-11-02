@@ -1,10 +1,8 @@
 %Creates a Plane Struct and stores it into a .mat file as specified by store_file_name
 
 % store_file_name -      string specifying the name of the plane struct
-% aoa_vs_cl -            csv of angle of attack vs coefficient of lift WITHOUT PARASITIC 
-%                        DRAG ADDED (from XFLR)
-% aoa_vs_cd -            csv of angle of attack vs coefficient of drag WITHOUT PARASITIC 
-%                        DRAG ADDED (from XFLR)
+% aero_aoa_vs_cl_vs_cd - csv of angle of attack vs coefficient of lift and 
+%                        coefficient of drag WITHOUT PARASITIC DRAG ADDED (from XFLR)
 % single_var_csv_file -  CSV file with static variables that are put into plane struct
 % thrust_vs_velo -       CSV file containing thrust values in the first column and 
 %                        corresponding velocity values in the second column
