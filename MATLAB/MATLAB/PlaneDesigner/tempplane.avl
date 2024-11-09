@@ -1,0 +1,52 @@
+tempplane | case title
+0.000000 | Mach
+0 0 0 | iYsym iZsym Zsym
+1.000000 1.000000 1.000000 | Sref Cref Bref
+0.000000 0.000000 0.000000 | Xref Yref Zref
+0.000000 | CDp (optional)
+
+#============
+SURFACE
+wing | surface name
+20 1.000000 20 1.000000 | Nchord Cspace Nspan Sspace
+YDUPLICATE
+0
+ANGLE
+2.000000
+#------------
+SECTION
+0.000000 0.000000 0.000000 0.200000 0.000000 0.000000 0.000000 | Xle Yle Zle Chord Ainc Nspan Sspace
+AFILE
+airfoils/ag13
+CLAF
+1.000000
+#------------
+SECTION
+0.050000 0.500000 0.100000 0.100000 0.000000 0.000000 0.000000 | Xle Yle Zle Chord Ainc Nspan Sspace
+AFILE
+airfoils/ag13
+CLAF
+1.000000
+
+#============
+SURFACE
+tail | surface name
+20 1.000000 20 1.000000 | Nchord Cspace Nspan Sspace
+YDUPLICATE
+0
+ANGLE
+-8.000000
+#------------
+SECTION
+1.000000 0.000000 0.200000 0.100000 0.000000 0.000000 0.000000 | Xle Yle Zle Chord Ainc Nspan Sspace
+NACA
+0012
+CLAF
+1.000000
+#------------
+SECTION
+1.000000 0.250000 0.200000 0.100000 0.000000 0.000000 0.000000 | Xle Yle Zle Chord Ainc Nspan Sspace
+NACA
+0012
+CLAF
+1.000000
