@@ -2,7 +2,7 @@ function Mission3
 
 plane = current_plane();
 t_final         = 5*60;
-init_alt = 768;
+init_alt = 668;
 turnBackRadius = 250/3.281;
 turnAroundRadius = 100/3.281;
 
