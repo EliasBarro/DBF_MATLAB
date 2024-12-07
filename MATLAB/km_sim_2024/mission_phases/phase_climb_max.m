@@ -137,7 +137,7 @@ if (lift>max_lift || lift<min_lift)
     set_fault('vehicle cannot produce the lift needed');
     triggr_dot1 = -1e9;
 elseif e<0
-    fault('Vehicle Stored Energy Depleted');
+    set_fault('Vehicle Stored Energy Depleted');
     triggr_dot1 = -1e9;
 elseif g_load > plane.g_limit
     set_fault('g limit exceeded, vehicle failed structurally');
