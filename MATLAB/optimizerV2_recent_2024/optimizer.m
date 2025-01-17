@@ -28,7 +28,7 @@ eta_coeff = [variables(4) variables(5) variables(6) variables(7)]; % from excel
 n = 25; %% Do not go above 40
 %Constraints
 TOFL_max = 30.48; % 100 ft
-WL_max = 11*9.81; % 10 kg/m^2 wingloading (DEFINITELY A LIMITING FACTOR)
+WL_max = 10*9.81; % 10 kg/m^2 wingloading (DEFINITELY A LIMITING FACTOR)
 P_max = 2000; %
 AR_min = 4; % Minimum Aspect Ratio is 4
 %b_max = 1.3; % trying 4.27 ft (10/25/2024 - THIS LEADS TO STATIC THRUST OF AROUND 10)
