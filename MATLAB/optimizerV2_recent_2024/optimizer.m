@@ -14,7 +14,7 @@ set(0,'DefaultAxesColorOrder',c)
 set(0,'defaultLineLineWidth',1.5)
 %%
 % Read column B of Inputs excel sheet
-variables = readmatrix('optimizerV2_inputs.xlsx','Range','B:B');
+variables = readmatrix('optimizerV2_inputs.csv','Range','B:B');
 Cd_min = variables(1); % from excel (CHANGED FROM 0.095 TO 0.049 ON 12/16/24)
 Cl_max = variables(2); % from excel
 g = 9.81;
@@ -140,7 +140,7 @@ v_stall = round(v_stall,4);
 % All of these outputs should go to an excel sheet
 T = table(best_S,best_M2,best_M3,best_v_max,req_Power,req_AR,req_ST,AUW,flight_time,req_laps,v_stall);
 T = rows2vars(T); % transpose
-filename = 'optimizerV2_outputs.xlsx';
+filename = 'optimizerV2_outputs.csv';
 writetable(T,filename)
 toc
 %% Plotting - Section not done(?) are we actually gonna do this(?)
