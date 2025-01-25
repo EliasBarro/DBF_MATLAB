@@ -114,7 +114,7 @@ mission_plan(21,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, '
 mission_plan(22,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
 %% LANDING
 % glide at -10 degrees until clearance altitude is less than 1.5m
-mission_plan(23,:) = {mp.glide, -11, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};
+mission_plan(23,:) = {mp.glide, -10, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};
 
 % glide at -2 degrees until clearance altitude is less than 0.1m
 mission_plan(24,:) = {mp.glide, -2, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0.2)], 'false'};

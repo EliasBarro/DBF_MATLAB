@@ -54,7 +54,7 @@ mission_plan(3,:) = {mp.climb_max,  20, {'h_dot',10}, {'0',1}, 'false', 'false'}
 mission_plan(4,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'x>500/3.28', 'false'}; % 500 feet to meters
 
 
-for i=5: 6:laps*6+5
+for i=5: 6:laps*6
 
 % 180 degree right turn
 mission_plan(i,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};
