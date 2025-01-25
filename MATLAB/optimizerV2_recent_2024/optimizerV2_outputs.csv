@@ -2,11 +2,11 @@ OriginalVariableNames,Var1
 best_S,0.8125
 best_M2,2.5
 best_M3,0.02
-best_v_max,32.5
-req_Power,1811.6939
+best_v_max,31.25
+req_Power,1841.6351
 req_AR,4.1163
-req_ST,11.4731
+req_ST,12.1292
 AUW,8.0175
-flight_time,3.3118
-req_laps,8.4751
+flight_time,3.258
+req_laps,8.0167
 v_stall,10.6086
