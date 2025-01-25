@@ -85,7 +85,7 @@ mission_plan(12,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'fa
 % 360 degree left turn
 mission_plan(13,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
 
-% go straight until even with start
+% go straight until 500 ft before start
 mission_plan(14,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
 
 % 180 degree right turn
@@ -104,7 +104,7 @@ mission_plan(18,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'fa
 % 360 degree left turn
 mission_plan(19,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
 
-% go straight until even with start
+% go straight until 500 ft before start
 mission_plan(20,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
 
 % 180 degree right turn
@@ -123,10 +123,10 @@ mission_plan(24,:) = {mp.glide, -2, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0.
 mission_plan(25,:) = {mp.glide,  0, {'0',1}, {'0',1}, 'gamma>=-1e-4', 'aoa>0.95*max(plane.alt_aero(:,1));'};
 
 % rotate down to level at 2 deg/sec
-mission_plan(26,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
-
+ mission_plan(26,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
+ 
 % roll out
-mission_plan(27,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
+ mission_plan(27,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
 
 % terminate
 mission_plan(28,:) = {mp.terminate,0,0,0,0,0};

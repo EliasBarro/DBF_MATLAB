@@ -68,7 +68,7 @@ mission_plan(i+2,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'f
 % 360 degree left turn
 mission_plan(i+3,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
 
-% go straight until even with start
+% go straight until 500 ft before start
 mission_plan(i+4,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
 
 % 180 degree right turn
