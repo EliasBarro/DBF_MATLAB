@@ -90,7 +90,7 @@ mission_plan(i+8,:) = {mp.glide, -2, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0
 % perfect flare right into runway, try to lock into 0 gamma. If getting at max aoa, also quit
 mission_plan(i+9,:) = {mp.glide,  0, {'0',1}, {'0',1}, 'gamma>=-1e-4', 'aoa>0.95*max(plane.alt_aero(:,1));'};
 
-% rotate down to level at 2 deg/sec
+% rotate down to level at 2 deg/sec THIS IS CAUSING PLANE TO GO UNDERGROUND
 mission_plan(i+10,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
 
 % roll out
