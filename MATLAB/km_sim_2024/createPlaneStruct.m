@@ -4,8 +4,8 @@
 % aero_aoa_vs_cl_vs_cd - csv of angle of attack vs coefficient of lift and 
 %                        coefficient of drag WITHOUT PARASITIC DRAG ADDED (from XFLR)
 % single_var_csv_file -  CSV file with static variables that are put into plane struct
-% thrust_vs_velo -       CSV file containing thrust values in the first column and 
-%                        corresponding velocity values in the second column
+% thrust_vs_velo -       CSV file containing velocity values in the first column and 
+%                        corresponding thrust values in the second column
 function createPlaneStruct(store_file_name, aero_aoa_vs_cl_vs_cd, single_var_csv_file, thrust_vs_velo)
     %initialize struct
     plane = struct; 

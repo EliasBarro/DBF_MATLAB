@@ -12,8 +12,8 @@ function prop_perf = gen_linear_prop_table(sl_static_edot, max_alt, thrust_vs_ve
 %                           Amps*1000/3600 to get mAh per second).
 %   max_alt             -   Maximum altitude the table should be valid for
 %                           in meters
-%   thrust_vs_velo      -   CSV file containing thrust values in the first
-%                           column and corresponding velocity values in the 
+%   thrust_vs_velo      -   CSV file containing velocity values in the first
+%                           column and corresponding thrust values in the 
 %                           second column
 %
 % OUTPUTS:
