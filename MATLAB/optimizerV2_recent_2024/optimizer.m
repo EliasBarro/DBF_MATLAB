@@ -15,7 +15,8 @@ set(0,'defaultLineLineWidth',1.5)
 %%
 % Read column B of Inputs excel sheet
 variables = readmatrix('optimizerV2_inputs.csv','Range','B:B');
-Cd_min = variables(1); % from excel (CHANGED FROM 0.095 TO 0.049 ON 12/16/24)
+%Cd_min = variables(1); % from excel (CHANGED FROM 0.095 TO 0.049 ON 12/16/24)
+Cd_min = variables(1); % CHANGED FROM 0.049 TO 0.07 TO MATCH W/ ECALC ON 1/24/25
 Cl_max = variables(2); % from excel
 g = 9.81;
 k = variables(3); % from excel
