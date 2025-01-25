@@ -54,44 +54,50 @@ mission_plan(3,:) = {mp.climb_max,  20, {'h_dot',10}, {'0',1}, 'false', 'false'}
 mission_plan(4,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'x>500/3.28', 'false'}; % 500 feet to meters
 
 
-for i=5: 6:laps*6
+for i=4: 6:laps*6
+
+% go straight until traveled 500ft from start
+mission_plan(i,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>500/3.28', 'false'}; % 500 feet to meters
 
 % 180 degree right turn
-mission_plan(i,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};
+mission_plan(i+1,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};
 
 % go straight until even with start
-mission_plan(i+1,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
+mission_plan(i+2,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
 
 % 360 degree left turn
-mission_plan(i+2,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
+mission_plan(i+3,:) = {mp.turn_radi, turnAroundRadius, {'0',1}, {'psi_dot',2 * pi}, 'false', 'false'};
 
 % go straight until even with start
-mission_plan(i+3,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
+mission_plan(i+4,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.281', 'false'}; 
 
 % 180 degree right turn
-mission_plan(i+4,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};  % End of final loop
+mission_plan(i+5,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};  % End of final loop
 
-% go straight until 500 from start
-mission_plan(i+5,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>500/3.281', 'false'}; % End of second loop
+
 end
 %% LANDING
+
+% go straight until even with start
+mission_plan(i+6,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
+
 % glide at -10 degrees until clearance altitude is less than 1.5m
-mission_plan(i+6,:) = {mp.glide, -10, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};
+mission_plan(i+7,:) = {mp.glide, -10, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};
 
 % glide at -2 degrees until clearance altitude is less than 0.1m
-mission_plan(i+7,:) = {mp.glide, -2, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0.2)], 'false'};
+mission_plan(i+8,:) = {mp.glide, -2, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0.2)], 'false'};
 
 % perfect flare right into runway, try to lock into 0 gamma. If getting at max aoa, also quit
-mission_plan(i+8,:) = {mp.glide,  0, {'0',1}, {'0',1}, 'gamma>=-1e-4', 'aoa>0.95*max(plane.alt_aero(:,1));'};
+mission_plan(i+9,:) = {mp.glide,  0, {'0',1}, {'0',1}, 'gamma>=-1e-4', 'aoa>0.95*max(plane.alt_aero(:,1));'};
 
 % rotate down to level at 2 deg/sec
-mission_plan(i+9,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
+mission_plan(i+10,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
 
 % roll out
-mission_plan(i+10,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
+mission_plan(i+11,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
 
 % terminate
-mission_plan(i+11,:) = {mp.terminate,0,0,0,0,0};
+mission_plan(i+12,:) = {mp.terminate,0,0,0,0,0};
 
 % write to mission_phase function
 mission_phase(0,mission_plan);
