@@ -33,5 +33,10 @@ function createPlaneStruct(store_file_name, aero_aoa_vs_cl_vs_cd, single_var_csv
     %initialize static variables
     plane.TO_frict_coeff = 0.0030;
 
+    %tracks file names for later reference
+    plane.aeroname = aero_aoa_vs_cl_vs_cd; %name of aero data
+    plane.singlevarname = single_var_csv_file; %name of single vars
+    plane.thrustveloname = thrust_vs_velo; % name of thrust velo data
+
     save(store_file_name, 'plane');
 end
