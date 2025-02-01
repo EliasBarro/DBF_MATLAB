@@ -79,7 +79,7 @@ end
 %% LANDING
 
 % go straight until even with start
-mission_plan(i+6,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
+mission_plan(i+6,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>0', 'false'}; 
 
 % glide at -10 degrees until clearance altitude is less than 1.5m
 mission_plan(i+7,:) = {mp.glide, -10, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};

@@ -111,7 +111,7 @@ mission_plan(20,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<-500/3.
 mission_plan(21,:) = {mp.turn_radi, -turnBackRadius, {'0',1}, {'psi_dot',-pi}, 'false', 'false'};  % End of final loop
 
 % go straight until even with start
-mission_plan(22,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east<0', 'false'}; 
+mission_plan(22,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>0', 'false'}; 
 %% LANDING
 % glide at -10 degrees until clearance altitude is less than 1.5m
 mission_plan(23,:) = {mp.glide, -10, {'0',1}, {'0',1}, ['h<', num2str(init_alt+2)], 'false'};
@@ -123,10 +123,10 @@ mission_plan(24,:) = {mp.glide, -2, {'0',1}, {'0',1}, ['h<', num2str(init_alt+0.
 mission_plan(25,:) = {mp.glide,  0, {'0',1}, {'0',1}, 'gamma>=-1e-4', 'aoa>0.95*max(plane.alt_aero(:,1));'};
 
 % rotate down to level at 2 deg/sec THIS IS CAUSING PLANE TO GO UNDERGROUND
- mission_plan(26,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
+mission_plan(26,:) = {mp.ground_rot,  -2*pi/180, {'0',1}, {'0',1}, 'aoa<=0', 'false'};
  
 % roll out
- mission_plan(27,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
+mission_plan(27,:) = {mp.ground_thr,  0, {'0',1}, {'0',1}, 'v<5', 'false'};
 
 % terminate
 mission_plan(28,:) = {mp.terminate,0,0,0,0,0};
