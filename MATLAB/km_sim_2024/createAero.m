@@ -3,7 +3,7 @@ function aerofinal = createAero(aero_aoa_vs_cl_vs_cd,parasitic_drag)
 % column index updated 11/9/24
 cl = importdata(aero_aoa_vs_cl_vs_cd);
 clhold = cl.data;
-climport = clhold(:,[1,15]); % Change columns based on XFLR csv columns (should
+climport = clhold(:,[1,16]); % Change columns based on XFLR csv columns (should
                             % be something like RegularFlatWingsStatic)
 clfinal = rmmissing(climport);
 
@@ -13,7 +13,7 @@ end
 
 cd = importdata(aero_aoa_vs_cl_vs_cd);
 cdhold = cd.data;
-cdimport = cdhold(:,13); % Change columns based on XFLR csv columns (should
+cdimport = cdhold(:,12); % Change columns based on XFLR csv columns (should
                         % be something like RegularFlatWingsStatic)
 cdfinal = rmmissing(cdimport);
 
