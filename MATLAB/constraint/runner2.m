@@ -1,3 +1,5 @@
+close all
+
 %% Plotting Settings
 c = [0.647 0.078 0.090;
      0.424 0.451 0.451;
@@ -65,14 +67,15 @@ if shade_on ~= 1
     plot(WL_kg, TW_to);
     plot(WL_kg, TW_c);
 
-    xlabel('Wing-Loading [kgf/m^2]');
+    xlabel('Wing-Loading (kg/m^2)');
     xline(4, "--");
     xline(10, '--');
     yline(2.25, '--');
-    ylabel('Required Thrust-to-Weight [-]');
-    legend('25 ft Takeoff','31.3 m/s Cruise');
-        plot(9.9,0.944911,'rp','MarkerSize',15,'MarkerFaceColor','y')
+    ylabel('Required Thrust-to-Weight');
+    p = plot(9.9,0.944911,'rp','MarkerSize',15,'MarkerFaceColor','y','MarkerEdgeColor','#EDB120');
+    text(10.2,0.9,['(' num2str(9.9) ' kg/m^2, ' num2str(0.944911) ')'])
     hold off
+    legend('25 ft Takeoff','31.3 m/s Cruise');
     
     figure
     hold on
@@ -82,11 +85,13 @@ if shade_on ~= 1
         xline(4, "--");
     xline(10, '--');
     yline(2000,'--');
-    xlabel('Wing-Loading [kgf/m^2]');
-    ylabel('Required Power [W]');
-    legend('25 ft Takeoff','31.3 m/s Cruise');
-        plot(9.9,1948.73,'rp','MarkerSize',15,'MarkerFaceColor','y')
+    xlabel('Wing-Loading (kg/m^2)');
+    ylabel('Required Power (W)');
+    plot(9.9,1948.73,'rp','MarkerSize',15,'MarkerFaceColor','y','MarkerEdgeColor','#EDB120')
+    text(10.2,1900,['(' num2str(9.9) ' kg/m^2, ' num2str(1948.73) ' W)'])
     hold off
+    ylim([0,2500])
+    legend('25 ft Takeoff','31.3 m/s Cruise');
     
 else
     
