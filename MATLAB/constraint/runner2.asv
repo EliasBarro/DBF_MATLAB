@@ -64,14 +64,14 @@ if shade_on ~= 1
     hold on
     plot(WL_kg, TW_to);
     plot(WL_kg, TW_c);
-
+    plot(9.9,0.944911,'rp','MarkerSize',15,'MarkerFaceColor','y')
     xlabel('Wing-Loading [kgf/m^2]');
     xline(4, "--");
     xline(10, '--');
     yline(2.25, '--');
     ylabel('Required Thrust-to-Weight [-]');
     legend('25 ft Takeoff','31.3 m/s Cruise');
-        plot(9.9,0.944911,'rp','MarkerSize',15,'MarkerFaceColor','y')
+
     hold off
     
     figure
@@ -85,7 +85,7 @@ if shade_on ~= 1
     xlabel('Wing-Loading [kgf/m^2]');
     ylabel('Required Power [W]');
     legend('25 ft Takeoff','31.3 m/s Cruise');
-        plot(9.9,1948.73,'rp','MarkerSize',15,'MarkerFaceColor','y')
+        plot(9.9,0.944911,'rp','MarkerSize',15,'MarkerFaceColor','y')
     hold off
     
 else
