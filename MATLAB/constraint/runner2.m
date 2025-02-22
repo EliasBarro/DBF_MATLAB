@@ -27,7 +27,7 @@ e_eff = 0.9; %Electrical Efficiency (P_mech/P_elec)
 p_eff = 0.83; %Propulsive Efficiency (P_pro/P_mech)
 p_eff_to = 0.35; %Propulsive Efficiency at takeoff velocities (P_pro/P_mech) -> propulsive efficeincy decreases with foward velocity (See Snorri pg. 619)
 
-SG = 7.62; %ft->m
+SG = 7.5; %m
 ALT_ground = 668; %m
 ALT_cruise = 768; %m
 
@@ -72,10 +72,10 @@ if shade_on ~= 1
     xline(10, '--');
     yline(2.25, '--');
     ylabel('Required Thrust-to-Weight');
-    p = plot(9.9,0.944911,'rp','MarkerSize',15,'MarkerFaceColor','y','MarkerEdgeColor','#EDB120');
-    text(10.2,0.9,['(' num2str(9.9) ' kg/m^2, ' num2str(0.944911) ')'])
+    p = plot(9.9,0.950147,'rp','MarkerSize',15,'MarkerFaceColor','y','MarkerEdgeColor','#EDB120');
+    text(10.2,0.9,['(' num2str(9.9) ' kg/m^2, ' num2str(0.950147) ')'])
     hold off
-    legend('25 ft Takeoff','31.3 m/s Cruise');
+    legend('7.5 m Takeoff','31.3 m/s Cruise');
     
     figure
     hold on
@@ -87,11 +87,11 @@ if shade_on ~= 1
     yline(2000,'--');
     xlabel('Wing-Loading (kg/m^2)');
     ylabel('Required Power (W)');
-    plot(9.9,1948.73,'rp','MarkerSize',15,'MarkerFaceColor','y','MarkerEdgeColor','#EDB120')
-    text(10.2,1900,['(' num2str(9.9) ' kg/m^2, ' num2str(1948.73) ' W)'])
+    plot(9.9,1978.84,'rp','MarkerSize',15,'MarkerFaceColor','y','MarkerEdgeColor','#EDB120')
+    text(10.2,1928.84,['(' num2str(9.9) ' kg/m^2, ' num2str(1978.84) ' W)'])
     hold off
     ylim([0,2500])
-    legend('25 ft Takeoff','31.3 m/s Cruise');
+    legend('7.5 m Takeoff','31.3 m/s Cruise');
     
 else
     

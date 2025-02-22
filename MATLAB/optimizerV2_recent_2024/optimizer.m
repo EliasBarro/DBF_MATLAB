@@ -48,7 +48,7 @@ b_max = 1.8288; % Maximum wingspan is 6 ft. We're assuming that we'll do the max
 
 Sweep_S = linspace(0.1, 1, n); % Wing Area
 Sweep_M2 = linspace(0, 5, n); % M2 Payload
-Sweep_M3 = linspace(0.02, 0.2494758, n); % M3 Payload
+Sweep_M3 = linspace(0.05, 0.2494758, n); % M3 Payload
 Sweep_v_max = linspace(15,45,n); % Cruise velocity
 C = 100*3600; % Use max battery power
 %Sweep_C = linspace(32,100,n)*3600;
@@ -59,7 +59,7 @@ tic
 % For weight calculation details, see
 % https://wudbf.slab.com/posts/aircraft-design-fundamentals-c0dukalq#huq51-weight-estimation
 empty_fuel_tank = 0.02; % Assuming 2 empty .5 L poland spring
-M2_X1 = 0.01; % Assuming X1 aircraft for M2 is very light
+M2_X1 = 0.05; % Assuming X1 aircraft for M2 is very light
 W2 = (4.28*S + 2.03 + M2_X1 + M2)*9.81;
 W3 = (4.28*S + 2.03 + empty_fuel_tank + M3)*9.81;
 WL2 = W2./S;
@@ -77,8 +77,8 @@ S_g3 = (W3.*v_lof3.^2)./(2*g*(T_lof3 - 0.5*Cd_min*rho.*S.*v_lof3.^2 - mu*(W3 - 0
 laps = (v_max.*min(300, C./P)/lap_dist);
 
 M2raw = M2.*v_max;
-bonus_box_score = 1; % Should also test when it equals 2.5 instead of 1;
-M3raw = laps + bonus_box_score/M3;
+bonus_box_score = 2.5; % Should also test when it equals 2.5 instead of 1;
+M3raw = laps - 1 + bonus_box_score/M3;
 %GMraw = (Time2change_config*2 + Time2secure_hatches_doors*2 + ...
 %    Time2unsecure_hatches_doors*2 + Time2load_m2_payload + ...
 %    Time2unload_m2_payload + passengers*(Time2loadunload_passenger));

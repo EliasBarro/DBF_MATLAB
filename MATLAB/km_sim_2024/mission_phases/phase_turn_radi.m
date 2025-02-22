@@ -53,9 +53,9 @@ prop            = plane.prop_perf;
 [e_dot,ix,iy,iz]    = lin_interp3(prop{1},prop{2},prop{3},prop{5},...
     thr,max(0,v),density,ix,iy,iz);
 
-% determine lift and g-load for a constant radius turn
-accel_c = v^2/turn_radius;      % centripital accel in m/s^2
-force_c = mass*accel_c;         % physics  101: F=ma
+% determine lift for a constant radius turn
+accel_c = v^2/turn_radius;      % centripetal accel. in m/s^2
+force_c = mass*accel_c;         % F=ma
 lift    = sqrt(weight^2 + force_c^2)-thrust*sin(aoa);
 
 % aero calcs (get drag)
