@@ -1,7 +1,8 @@
 function set_aero
-%SET_ALT_AERO swaps plane.alt_aero table into the primary plane.aero table
+%SET_AERO swaps the original plane.aero table into the primary plane.aero table
+%SET_ALT_AERO must be used beforehand
 %
-% intended for flaps, gear down, etc.
+% intended for no flaps, gear up, etc.
 
 % load current plane
 plane = current_plane();
