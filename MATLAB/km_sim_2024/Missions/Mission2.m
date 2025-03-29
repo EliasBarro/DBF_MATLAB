@@ -47,13 +47,21 @@ mission_plan(1,:) = {mp.ground_thr,  1, {'0',1}, {'0',1}, 'v>6', 'false'};
 % rotate until weight off wheels (at 2 degrees per second)
 mission_plan(2,:) = {mp.ground_rot,  10*pi/180, {'0',1}, {'0',1}, 'g_load>1', 'false'};
 
+% config change - remove flaps (alternate aero is cruise config)
+mission_plan(3,:) = {mp.config, 'set_alt_aero;','','','',''};
+
 % climb at max thr, 20 degree flight path angle, until climbed 10m AGL (delta-h)
-mission_plan(3,:) = {mp.climb_max,  20, {'h_dot',10}, {'0',1}, 'false', 'false'};
+mission_plan(4,:) = {mp.climb_max,  20, {'h_dot',10}, {'0',1}, 'false', 'false'};
+
+%NOTE: There should be a config change for the flaps for the landing as
+%well, but it does not work at the moment. Look to make it work and fix
+
+% config change - remove flaps (aero is cruise config)
+mission_plan(5,:) = {mp.config, 'set_aero;','','','',''};
 
 
 
-
-for i=4: 6:laps*6
+for i=6: 6:laps*6
 
 % go straight until traveled 500ft from start
 mission_plan(i,:) = {mp.cruise_thr, cruise_thr, {'0',1}, {'0',1}, 'east>500/3.28', 'false'}; % 500 feet to meters

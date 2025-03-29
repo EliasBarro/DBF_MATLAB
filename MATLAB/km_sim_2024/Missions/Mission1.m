@@ -61,6 +61,7 @@ mission_plan(4,:) = {mp.climb_max,  20, {'h_dot',10}, {'0',1}, 'false', 'false'}
 
 %NOTE: There should be a config change for the flaps for the landing as
 %well, but it does not work at the moment. Look to make it work and fix
+
 % config change - remove flaps (aero is cruise config)
 mission_plan(5,:) = {mp.config, 'set_aero;','','','',''};
 
