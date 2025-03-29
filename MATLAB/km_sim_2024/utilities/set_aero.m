@@ -8,8 +8,7 @@ plane = current_plane();
 
 % set alternate aero as main aero table
 if isfield(plane,'alt_aero')
-    plane.old_aero=plane.aero;
-    plane.aero = plane.alt_aero;
+    plane.aero = plane.old_aero;
 else
     warning('no alternate aero table found in plane structure');
 end
